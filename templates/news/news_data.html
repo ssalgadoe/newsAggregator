@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>News Updates</title>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        {% load static %}
+        <script src="{% static 'aps.js' %}"> </script>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <style>
+      text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+      }
+     .pm {
+            font-size: 14px;
+            font-family: 'Montserrat', sans-serif;
+            color:green;
+      }
+       .h1m {
+            font-size: 17px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            color:green;
+      }
+     p {
+            font-size: 12px;
+            font-family: 'Montserrat', sans-serif;
+            color:green;
+      }
+       h1 {
+            font-size: 15px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            color:green;
+      }
+       h2 {
+            font-size: 18px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            color:green;
+      }
+      ul.a {
+            list-style-type: circle;
+            color:green;
+      }
+
+      .anchor:link    {
+            font-family: 'Montserrat', sans-serif;
+            color:orange;
+            font-size: 12px;
+            text-decoration: none;
+      }
+      .anchor:visited {
+            font-family: 'Montserrat', sans-serif;
+            color:green;
+      }
+      .anchor:hover   {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+      }
+       .anchor:active  {
+            font-family: 'Montserrat', sans-serif;
+            color:red;
+      }
+      </style>
+</head>
+<body>
+<a href="/news/" class="anchor">HOME</a>
+<br>
+<br>
+{% if news_data %}
+    {% if is_mobile %}
+        {% for q in news_data %}
+            <h1 class="h1m">{{ q.title }}</h1>
+            <p class="pm">{{ q.body|safe }} </p>
+        {% endfor %}
+    {% else %}
+        {% for q in news_data %}
+            <h1>{{ q.title }}</h1>
+            <p>{{ q.body|safe }} </p>
+        {% endfor %}
+    {% endif %}
+{% else %}
+    <h2>No News available</h2>
+
+{% endif %}
+
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sri Lankan News Updates (Banner Free)</title>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        {% load static %}
+        <script src="{% static 'aps.js' %}"> </script>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <style>
+      text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+      }
+      text.odd {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+      }
+
+      p {
+            font-size: 12px;
+            font-family: 'Montserrat', sans-serif;
+            color:green;
+      }
+       h1 {
+            font-size: 15px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            color:green;
+      }
+       h2 {
+            font-size: 18px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            color:green;
+      }
+      ul.a {
+            list-style-type: circle;
+            color:green;
+      }
+
+      .anchor_m:link    {
+            font-family: 'Montserrat', sans-serif;
+            color:green;
+            font-size: 14px;
+            text-decoration: none;
+      }
+      .anchor_m:visited {
+            font-family: 'Montserrat', sans-serif;
+            color:green;
+      }
+
+      .anchor:link    {
+            font-family: 'Montserrat', sans-serif;
+            color:green;
+            font-size: 12px;
+            text-decoration: none;
+      }
+      .anchor:visited {
+            font-family: 'Montserrat', sans-serif;
+            color:green;
+      }
+      .anchor:hover   {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+      }
+       .anchor:active  {
+            font-family: 'Montserrat', sans-serif;
+            color:red;
+      }
+
+
+      </style>
+</head>
+<body>
+<a href="/news/" class="anchor">HOME</a>
+
+<p> (Last update: {{last_update}}) </p>
+
+{% if news_list %}
+   {% if is_mobile %}
+        <ul class="a">
+            {% for q in news_list %}
+                <li><a href="/news/details/{{q.id}}" class="anchor_m">{{ q.title|safe }} ({{q.source}})</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <ul class="a">
+            {% for q in news_list %}
+                <li><a href="/news/details/{{q.id}}" class="anchor">{{ q.title|safe }} ({{q.source}})</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% else %}
+    <h2>No News available</h2>
+
+{% endif %}
+
+</body>
+</html>
